@@ -1,4 +1,4 @@
-angular.module('angularfireSlackApp')
+angular.module('dopeSlack')
   .factory('Auth', function($firebaseAuth) {
     var auth = $firebaseAuth();
 

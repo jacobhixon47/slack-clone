@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name angularfireSlackApp
+ * @name dopeSlack
  * @description
- * # angularfireSlackApp
+ * # dopeSlack
  *
  * Main module of the application.
  */
 angular
-  .module('angularfireSlackApp', [
+  .module('dopeSlack', [
     'firebase',
     'angular-md5',
     'ui.router'
@@ -22,6 +22,7 @@ angular
         resolve: {
           requireNoAuth: function($state, Auth) {
             return Auth.$requireSignIn().then(function(auth){
+              $state.go('channels');
               $state.go('channels');
             }, function(error) {
               return;
@@ -37,6 +38,7 @@ angular
           requireNoAuth: function($state, Auth){
             return Auth.$requireSignIn().then(function(auth){
               $state.go('channels');
+              $state.go('channels');
             }, function(error) {
               return;
             });
@@ -50,7 +52,8 @@ angular
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireSignIn().then(function(auth){
-              $state.go('home');
+              $state.go('channels');
+              $state.go('channels');
             }, function(error) {
               return;
             });
@@ -101,6 +104,19 @@ angular
         url: '/create',
         templateUrl: 'channels/create.html',
         controller: 'ChannelsCtrl as channelsCtrl'
+      })
+      .state('channels.messages', {
+        url: '/{channelId}/messages',
+        templateUrl: 'channels/messages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function($stateParams, Messages) {
+            return Messages.forChannel($stateParams.channelId).$loaded();
+          },
+          channelName: function($stateParams, channels) {
+            return '#' + channels.$getRecord($stateParams.channelId).name;
+          }
+        }
       })
 
     $urlRouterProvider.otherwise('/');

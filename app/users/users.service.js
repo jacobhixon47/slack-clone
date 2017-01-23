@@ -1,4 +1,4 @@
-angular.module('angularfireSlackApp')
+angular.module('dopeSlack')
   .factory('Users', function($firebaseArray, $firebaseObject) {
     var usersRef = firebase.database().ref('users');
 

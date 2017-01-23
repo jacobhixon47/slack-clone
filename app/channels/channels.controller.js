@@ -1,4 +1,4 @@
-angular.module('angularfireSlackApp')
+angular.module('dopeSlack')
   .controller('ChannelsCtrl', function($state, Auth, Users, profile, channels) {
     var channelsCtrl = this;
     channelsCtrl.profile = profile;
@@ -17,9 +17,7 @@ angular.module('angularfireSlackApp')
 
     channelsCtrl.createChannel = function() {
       channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function() {
-        channelsCtrl.newChannel = {
-          name: ''
-        };
+        $state.go('channels.messages', {channelId: ref.key});
       });
     };
   });
