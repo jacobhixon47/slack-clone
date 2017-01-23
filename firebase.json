@@ -1,4 +1,9 @@
 {
-  "firebase": "slack",
-  "public": "dist"
+  "firebase": "dopeSlack",
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "dist"
+  }
 }
