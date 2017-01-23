@@ -22,4 +22,15 @@ angular.module('dopeSlack')
       authCtrl.error = error;
     });
   };
+
+  // authCtrl.delete = function() {
+  //   Auth.$removeUser({
+  //     email: authCtrl.user.email,
+  //     password: authCtrl.user.password
+  //   }).then(function() {
+  //     console.log('user removed successfully');
+  //   }).catch(function(error) {
+  //     authCtrl.error = error;
+  //   });
+  // };
 });
