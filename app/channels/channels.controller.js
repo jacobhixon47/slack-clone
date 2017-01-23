@@ -8,6 +8,7 @@ angular.module('dopeSlack')
     channelsCtrl.newChannel = {
       name: ''
     };
+    channelsCtrl.users = Users.all;
 
     channelsCtrl.logout = function() {
       Auth.$signOut().then(function() {
