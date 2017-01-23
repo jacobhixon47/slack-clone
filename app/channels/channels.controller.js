@@ -9,10 +9,14 @@ angular.module('dopeSlack')
       name: ''
     };
     channelsCtrl.users = Users.all;
+    Users.setOnline(profile.$id);
 
     channelsCtrl.logout = function() {
-      Auth.$signOut().then(function() {
-        $state.go('home');
+      channelsCtrl.profile.online = null;
+      channelsCtrl.profile.$save().then(function() {
+        Auth.$signOut().then(function() {
+          $state.go('home');
+        });
       });
     };
 
